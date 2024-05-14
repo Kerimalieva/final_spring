@@ -2,6 +2,7 @@ package com.final_project_spring.authentication;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
+
 public interface JwtService {
 
 	public boolean isTokenValid(String token, UserDetails userDetails);

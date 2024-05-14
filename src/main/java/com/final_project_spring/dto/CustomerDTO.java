@@ -15,6 +15,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -39,7 +40,8 @@ public class CustomerDTO {
 	@JsonProperty("smoothiePreference")
 	private String smoothiePreference;
 
-
+	//@Size(max = 15, min = 10, message = "Invalid mobile number")
+	//@Pattern(regexp = "^\\d{10}$", message = "Invalid mobile number")
 	@Digits(message = "Invalid mobile number", fraction = 0, integer = 10)
 	@JsonProperty("mobileNumber")
 	private Long mobileNumber;

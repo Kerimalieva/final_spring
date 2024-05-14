@@ -23,10 +23,7 @@ import com.final_project_spring.service.AuthenticationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/**
- * @author Rajesh_Kawali
- * 
- */
+
 @ExtendWith({ SpringExtension.class, MockitoExtension.class })
 @WithMockUser(username = "admin", roles = { "USER", "ADMIN" })
 public class AuthenticationControllerTests {

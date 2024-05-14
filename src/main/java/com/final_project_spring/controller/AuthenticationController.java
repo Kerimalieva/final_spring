@@ -4,10 +4,7 @@ import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.final_project_spring.dto.AuthenticationRequest;
 import com.final_project_spring.dto.AuthenticationResponse;
@@ -31,13 +28,16 @@ public class AuthenticationController {
 	@Autowired
 	private AuthenticationService service;
 
-	@Operation(summary = "Register", description = "This api used to register user to access secured api's")
-	@PostMapping("/register")
-	public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
-		String _function = ".register";
-		log.info(CLASS_NAME + _function + "::ENTER");
-		return ResponseEntity.ok(service.register(request));
-	}
+
+
+@Operation(summary = "Register", description = "This api used to register user to access secured api's")
+@PostMapping("/register")
+public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
+	String _function = ".register";
+	log.info(CLASS_NAME + _function + "::ENTER");
+	return ResponseEntity.ok(service.register(request));
+}
+
 
 	@Operation(summary = "Authenticate", description = "This api used to authenticate user to access secured api's")
 	@PostMapping("/authenticate")

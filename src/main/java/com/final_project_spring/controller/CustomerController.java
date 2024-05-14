@@ -32,7 +32,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
-
 @Slf4j
 @RequestMapping("/api")
 @Tag(name = "Customer", description = "Customer management APIs")
@@ -75,9 +74,9 @@ public class CustomerController {
 
 	@Operation(summary = "Retrieve customer", description = "Get customer object by specifying its id.")
 	@ApiResponses({
-		@ApiResponse(responseCode = "200", description = "Customer details for given id", content = @Content(array = @ArraySchema(schema = @Schema(implementation = CustomerDTO.class)))),
-		@ApiResponse(responseCode = "400", description = "Invalid id supplied", content = {@Content(schema = @Schema()) }),
-		@ApiResponse(responseCode = "404", description = "Customer not found.", content = {@Content(schema = @Schema()) }) })
+			@ApiResponse(responseCode = "200", description = "Customer details for given id", content = @Content(array = @ArraySchema(schema = @Schema(implementation = CustomerDTO.class)))),
+			@ApiResponse(responseCode = "400", description = "Invalid id supplied", content = {@Content(schema = @Schema()) }),
+			@ApiResponse(responseCode = "404", description = "Customer not found.", content = {@Content(schema = @Schema()) }) })
 	@GetMapping("/v1/customer/{id}")
 	public ResponseEntity<?> customerById(@Parameter(description = "Customer id", required = true) @PathVariable Long id) {
 		String _function = ".customerById";
@@ -95,9 +94,9 @@ public class CustomerController {
 
 	@Operation(summary = "Update the customer details", description = "Update customer details by providing the id.")
 	@ApiResponses({
-		@ApiResponse(responseCode = "201", description = "Customer details are successfully updated into the DB", content = @Content(array = @ArraySchema(schema = @Schema(implementation = CustomerDTO.class)))),
-		@ApiResponse(responseCode = "400", description = "Invalid id supplied", content = {@Content(schema = @Schema()) }),
-		@ApiResponse(responseCode = "404", description = "Customer not found for the given id", content = {@Content(schema = @Schema()) }) })
+			@ApiResponse(responseCode = "201", description = "Customer details are successfully updated into the DB", content = @Content(array = @ArraySchema(schema = @Schema(implementation = CustomerDTO.class)))),
+			@ApiResponse(responseCode = "400", description = "Invalid id supplied", content = {@Content(schema = @Schema()) }),
+			@ApiResponse(responseCode = "404", description = "Customer not found for the given id", content = {@Content(schema = @Schema()) }) })
 	@PreAuthorize("hasAuthority('admin:update')")
 	@PutMapping("/v1/customer/{id}")
 	public ResponseEntity<?> updateCustomer(@Parameter(description = "Customer id", required = true) @PathVariable Long id, @Parameter(description = "Customer details") @Valid @RequestBody CustomerDTO customerDTO) {
@@ -116,9 +115,9 @@ public class CustomerController {
 
 	@Operation(summary = "Delete customer details", description = "Delete customer object by using its id.")
 	@ApiResponses({
-		@ApiResponse(responseCode = "201", description = "Customer details are successfully deleted from the DB", content = @Content(array = @ArraySchema(schema = @Schema(implementation = CustomerDTO.class)))),
-		@ApiResponse(responseCode = "400", description = "Invalid id supplied", content = {@Content(schema = @Schema()) }),
-		@ApiResponse(responseCode = "404", description = "Customer not found for the given id", content = {@Content(schema = @Schema()) }) })
+			@ApiResponse(responseCode = "201", description = "Customer details are successfully deleted from the DB", content = @Content(array = @ArraySchema(schema = @Schema(implementation = CustomerDTO.class)))),
+			@ApiResponse(responseCode = "400", description = "Invalid id supplied", content = {@Content(schema = @Schema()) }),
+			@ApiResponse(responseCode = "404", description = "Customer not found for the given id", content = {@Content(schema = @Schema()) }) })
 	@PreAuthorize("hasAuthority('admin:delete')")
 	@DeleteMapping("/v1/customer/{id}")
 	public ResponseEntity<?> deleteCustomer(@Parameter(description = "Customer id", required = true) @PathVariable Long id) {

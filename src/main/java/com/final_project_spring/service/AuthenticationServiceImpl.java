@@ -1,6 +1,7 @@
 package com.final_project_spring.service;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -55,11 +56,73 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 		var refreshToken = jwtService.generateRefreshToken(user);
 		saveUserToken(savedUser, jwtToken);
 
-		emailSenderService.sendSimpleEmail(savedUser.getEmail(), "Регистрация успешна",
-				"Добро пожаловать, " + savedUser.getUsername() + "! Вы успешно зарегистрировались.");
+		String activationToken = UUID.randomUUID().toString();
+		saveActivationToken(savedUser, activationToken); // Сохраняем токен активации
 
-		return AuthenticationResponse.builder().accessToken(jwtToken).refreshToken(refreshToken).build();
+		String activationLink = "http://localhost:8181/api/activate?token=" + activationToken;
+		emailSenderService.sendSimpleEmail(
+				savedUser.getEmail(),
+				"Подтверждение регистрации",
+				"Для активации вашего аккаунта, пожалуйста, перейдите по следующей ссылке: " + activationLink
+		);
+
+		return AuthenticationResponse.builder()
+				.accessToken(jwtToken)
+				.refreshToken(refreshToken)
+				.build();
 	}
+
+	private void saveActivationToken(User user, String token) {
+		Token activationToken = new Token();
+		activationToken.setUser(user);
+		activationToken.setToken(token);
+		activationToken.setExpired(false);
+		activationToken.setRevoked(false);
+		tokenRepository.save(activationToken);
+	}
+
+
+//	public AuthenticationResponse register(RegisterRequest request) {
+//		var user = User.builder()
+//				.firstname(request.getFirstName())
+//				.lastname(request.getLastName())
+//				.email(request.getEmail())
+//				.password(passwordEncoder.encode(request.getPassword()))
+//				.role(request.getRole())
+//				.build();
+//		var savedUser = repository.save(user);
+//
+//		String activationToken = UUID.randomUUID().toString();
+//		saveActivationToken(savedUser, activationToken);
+//
+//
+//
+//		String activationLink = "http://localhost:8181/api/activate?token=" + activationToken;
+//
+//		emailSenderService.sendSimpleEmail(
+//				savedUser.getEmail(),
+//				"Подтверждение регистрации",
+//				"Для активации вашего аккаунта, пожалуйста, перейдите по следующей ссылке: " + activationLink
+//		);
+//
+//		return AuthenticationResponse.builder()
+//				.accessToken(jwtService.generateToken(savedUser))
+//				.refreshToken(jwtService.generateRefreshToken(savedUser))
+//				.build();
+//	}
+//
+//	private void saveActivationToken(User user, String token) {
+//		Token activationToken = new Token();
+//		activationToken.setUser(user);
+//		activationToken.setToken(token);
+//		activationToken.setExpired(false);
+//		activationToken.setRevoked(false);
+//		tokenRepository.save(activationToken);
+//	}
+
+
+
+
 
 	public AuthenticationResponse authenticate(AuthenticationRequest request) {
 		authenticationManager
@@ -78,6 +141,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 		tokenRepository.save(token);
 	}
 
+
 	private void revokeAllUserTokens(User user) {
 		var validUserTokens = tokenRepository.findAllValidTokenByUser(user.getId());
 		if (validUserTokens.isEmpty())
@@ -88,6 +152,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 		});
 		tokenRepository.saveAll(validUserTokens);
 	}
+
 
 	public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
