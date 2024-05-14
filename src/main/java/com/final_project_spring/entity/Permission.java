@@ -1,0 +1,20 @@
+package com.final_project_spring.entity;
+
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+
+@RequiredArgsConstructor
+public enum Permission {
+
+	USER("user"),
+	USER_READ("user:read"),
+	ADMIN("admin"),
+    ADMIN_READ("admin:read"),
+    ADMIN_UPDATE("admin:update"),
+    ADMIN_CREATE("admin:create"),
+    ADMIN_DELETE("admin:delete");
+
+    @Getter
+    private final String permission;
+}
