@@ -43,6 +43,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
+	@Autowired
+	private EmailSenderService emailSenderService;
+
 	public AuthenticationResponse register(RegisterRequest request) {
 		var user = User.builder().firstname(request.getFirstName()).lastname(request.getLastName())
 				.email(request.getEmail()).password(passwordEncoder.encode(request.getPassword()))
@@ -51,6 +54,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 		var jwtToken = jwtService.generateToken(user);
 		var refreshToken = jwtService.generateRefreshToken(user);
 		saveUserToken(savedUser, jwtToken);
+
+		emailSenderService.sendSimpleEmail(savedUser.getEmail(), "Регистрация успешна",
+				"Добро пожаловать, " + savedUser.getUsername() + "! Вы успешно зарегистрировались.");
+
 		return AuthenticationResponse.builder().accessToken(jwtToken).refreshToken(refreshToken).build();
 	}
 

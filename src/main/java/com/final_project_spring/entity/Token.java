@@ -1,5 +1,6 @@
 package com.final_project_spring.entity;
 
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

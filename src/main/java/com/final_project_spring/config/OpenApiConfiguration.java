@@ -12,18 +12,18 @@ import io.swagger.v3.oas.annotations.servers.Server;
 
 
 @OpenAPIDefinition(info = @Info(contact = @Contact(
-		name = "Currencies Direct",
+		name = "Currencies Direct", 
 		url = "https://currenciesdirect.com"),
-		description = "OpenApi documentation for Customer service",
-		title = "Currencies Direct - Customer API",
-		version = "1.0",
+		description = "OpenApi documentation for Customer service", 
+		title = "Currencies Direct - Customer API", 
+		version = "1.0", 
 		license = @License(
-				name = "Currencies Direct Licence",
-				url = "https://www.currenciesdirect.com/en/info/privacy-policy"),
-		termsOfService = "https://www.currenciesdirect.com/en/info/terms-of-use"),
+				name = "Currencies Direct Licence", 
+				url = "https://www.currenciesdirect.com/en/info/privacy-policy"), 
+				termsOfService = "https://www.currenciesdirect.com/en/info/terms-of-use"), 
 		servers = {
-				@Server(description = "LOCAL Environment", url = "http://localhost:8181"),
-				@Server(description = "PROD Environment", url = "https://currenciesdirect.com/") },
+		@Server(description = "LOCAL Environment", url = "http://localhost:8181"),
+		@Server(description = "PROD Environment", url = "https://currenciesdirect.com/") }, 
 		security = {
 				@SecurityRequirement(name = "bearerAuth") })
 @SecurityScheme(name = "bearerAuth", description = "JWT auth description", scheme = "bearer", type = SecuritySchemeType.HTTP, bearerFormat = "JWT", in = SecuritySchemeIn.HEADER)
