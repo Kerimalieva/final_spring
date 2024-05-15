@@ -24,10 +24,7 @@ import com.final_project_spring.dto.CustomerDTO;
 import com.final_project_spring.service.CustomerService;
 
 
-/**
- * @author Rajesh_Kawali
- *
- */
+
 //@ExtendWith(MockitoExtension.class)
 //@WebMvcTest(CustomerController.class)
 @ExtendWith({SpringExtension.class, MockitoExtension.class})
