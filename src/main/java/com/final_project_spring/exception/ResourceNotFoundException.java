@@ -3,7 +3,10 @@ package com.final_project_spring.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-
+/**
+ * @author Rajesh_Kawali
+ *
+ */
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
 public class ResourceNotFoundException extends RuntimeException {
 

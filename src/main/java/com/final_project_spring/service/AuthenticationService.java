@@ -9,7 +9,10 @@ import com.final_project_spring.dto.RegisterRequest;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-
+/**
+ * @author Rajesh_Kawali
+ * 
+ */
 public interface AuthenticationService {
 
 	public AuthenticationResponse register(RegisterRequest request);

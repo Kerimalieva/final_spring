@@ -10,10 +10,14 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.annotations.servers.Server;
 
-
+/**
+ * @author Rajesh_Kawali
+ * 
+ */
 @OpenAPIDefinition(info = @Info(contact = @Contact(
 		name = "Currencies Direct", 
-		url = "https://currenciesdirect.com"),
+		email = "mumbai@currenciesdirect.com", 
+		url = "https://currenciesdirect.com"), 
 		description = "OpenApi documentation for Customer service", 
 		title = "Currencies Direct - Customer API", 
 		version = "1.0", 

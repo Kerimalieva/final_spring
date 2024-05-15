@@ -8,10 +8,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-/**
- * @author Rajesh_Kawali
- *
- */
+
 @SpringBootTest
 @ContextConfiguration
 @ExtendWith({SpringExtension.class, MockitoExtension.class})

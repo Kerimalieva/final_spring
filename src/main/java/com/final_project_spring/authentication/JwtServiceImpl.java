@@ -16,7 +16,10 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
-
+/**
+ * @author Rajesh_Kawali
+ * 
+ */
 @Service
 public class JwtServiceImpl implements JwtService {
 

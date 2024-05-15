@@ -15,7 +15,10 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-
+/**
+ * @author Rajesh_Kawali
+ * 
+ */
 @RequiredArgsConstructor
 public enum Role {
 

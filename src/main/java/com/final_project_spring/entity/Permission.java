@@ -3,7 +3,10 @@ package com.final_project_spring.entity;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-
+/**
+ * @author Rajesh_Kawali
+ * 
+ */
 @RequiredArgsConstructor
 public enum Permission {
 

@@ -10,7 +10,7 @@ public class AuthViewController {
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
-        return "register";
+        return "register"; // Возвращает имя HTML файла (например, register.html в папке resources/templates)
     }
 }
 

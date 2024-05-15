@@ -5,7 +5,10 @@ import org.springframework.stereotype.Repository;
 
 import com.final_project_spring.entity.Customer;
 
-
+/**
+ * @author Rajesh_Kawali
+ *
+ */
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
